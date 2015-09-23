@@ -18,33 +18,25 @@
 #include <QDebug>
 
 // Axes and keys binding (unfortunately change between OS...).
-#ifdef __APPLE__
-#define THRUST_AXIS 1
-#define YAW_AXIS 0
-#define PITCH_AXIS 3
-#define ROLL_AXIS 2
-#define LEFT_TRIGGER 8
-#define RIGHT_TRIGGER 9
-#define B_BUTTON 12
-#define X_BUTTON 13
-#define Y_BUTTON 14
-#define RIGHT_STICK_BUTTON 7
-#else
-#define THRUST_AXIS 1
-#define YAW_AXIS 0
-#define PITCH_AXIS 3
-#define ROLL_AXIS 4
-#define A_BUTTON 0
-#define B_BUTTON 1
-#define X_BUTTON 2
-#define Y_BUTTON 3
-#define LEFT_TRIGGER 4
-#define RIGHT_TRIGGER 5
-#define BACK_BUTTON 6
-#define START_BUTTON 7
-#define LEFT_STICK_BUTTON 9
-#define RIGHT_STICK_BUTTON 9
-#endif
+#define ROLL_AXIS  2
+#define PITCH_AXIS  3
+#define YAW_AXIS  0
+#define THRUST_AXIS  1
+#define LONGITUDINAL_AXIS  7
+#define LATERAL_AXIS  6
+#define BUTTON_1 0
+#define BUTTON_2 1
+#define BUTTON_3 2
+#define BUTTON_4 3
+#define LEFT_TRIGGER_U 6
+#define LEFT_TRIGGER_D 4
+#define RIGHT_TRIGGER_U 7
+#define RIGHT_TRIGGER_D 5
+#define BACK_BUTTON 8
+#define START_BUTTON 9
+#define LEFT_STICK_BUTTON 10
+#define RIGHT_STICK_BUTTON 11
+
 
 /// Encapsulate the SDL joystick interface.
 class Gamepad
