@@ -47,16 +47,28 @@ void Gamepad::startMonitoring(int index)
     name = QString::fromStdString(Joystick::getIdentification(gamepadIndex).name.toAnsiString());
 
     // Count the number of axes.
+    /*
     int nAxes = 0;
     while(Joystick::hasAxis(gamepadIndex, (Joystick::Axis)nAxes))
         nAxes++;
 
     axes.resize(nAxes);
+    */
+    int nAxes = 8;
+    axes.resize(nAxes);
+
+    int useableAxes = 0;
+    for (int i = sf::Joystick::X; i <= sf::Joystick::PovY; ++i)
+    {
+        sf::Joystick::Axis Taxis = static_cast<sf::Joystick::Axis>(i);
+        if(sf::Joystick::hasAxis(gamepadIndex, Taxis))
+            useableAxes++;
+    }
 
     // Count the number of buttons.
     buttons.resize(Joystick::getButtonCount(gamepadIndex));
 
-    qDebug() << "Detected " << nAxes << " axes and " << buttons.size() << " buttons." << endl;
+    qDebug() << "Detected " << useableAxes << " axes and " << buttons.size() << " buttons." << endl;
 }
 
 QString Gamepad::getName()
@@ -68,8 +80,17 @@ QVector<double> Gamepad::getAxes()
 {
     Joystick::update();
 
+    /*
     for(int i=0; i<axes.size(); i++)
         axes[i] = (double)Joystick::getAxisPosition(gamepadIndex, (Joystick::Axis)i) / JOYSTICK_AXIS_MAX;
+    */
+
+    for (int i = sf::Joystick::X; i <= sf::Joystick::PovY; ++i)
+    {
+        sf::Joystick::Axis Taxis = static_cast<sf::Joystick::Axis>(i);
+        if(sf::Joystick::hasAxis(gamepadIndex, Taxis))
+            axes[i] = (double)Joystick::getAxisPosition(gamepadIndex, (Joystick::Axis)i) / JOYSTICK_AXIS_MAX;
+    }
 
     return axes;
 }
@@ -86,6 +107,6 @@ QVector<bool> Gamepad::getButtons()
 
 bool Gamepad::isGamepadStillConnected()
 {
-    return Joystick::isConnected(gamepadIndex) &&
-           (QString::fromStdString(Joystick::getIdentification(gamepadIndex).name.toAnsiString()) == name);
+    return Joystick::isConnected(gamepadIndex) && // gamepad still connected
+           (QString::fromStdString(Joystick::getIdentification(gamepadIndex).name.toAnsiString()) == name);  // still the same gamepad
 }

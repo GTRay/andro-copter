@@ -1,9 +1,9 @@
 /*!
 * \file main.cpp
 * \brief The starting point of the program.
-* \author Romain Baud
+* \author Originallly Romain Baud, modified by Ruizhi Chai
 * \version 0.1
-* \date 2012.11.26
+* \date 2015.08.02
 *
 * \mainpage AndroCopterRemote
 * \author Romain Baud
@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 
 	// Set the name and company of the application. This will be used to save
 	// the application settings.
-    QCoreApplication::setOrganizationName("Romain Baud");
+    QCoreApplication::setOrganizationName("Rayleigh Chai");
     QCoreApplication::setApplicationName("AndroCopter remote");
 
 	// Create the main window, and display it. The Qt main loop will now run.

@@ -200,7 +200,7 @@ void MainWindow::onDataReceived()
             {
                 const QByteArray ba = clientSocket->read(MESSAGE_SIZE_SIZE);
 
-                // Conversion des octets reçus en int.
+                // Conversion des octets reï¿½us en int.
                 const unsigned char* bytes = reinterpret_cast<const unsigned char*>(ba.data());
                 inMessageSize = ((bytes[0]<<24)|(bytes[1]<<16)|(bytes[2]<<8)|(bytes[3]));
             }
@@ -274,7 +274,7 @@ void MainWindow::displayImage(QByteArray data)
         fpvBitrate = FPV_RATE_LPF * fpvBitrate + (1.0-FPV_RATE_LPF) * data.size() / elapsedTime;
         fpvFramerate = FPV_RATE_LPF * fpvFramerate + (1.0-FPV_RATE_LPF) * 1000.0 / elapsedTime;
 
-        // Affichage de l'estimation du débit et du FPS.
+        // Affichage de l'estimation du dï¿½bit et du FPS.
         if(elapsedTime > 0)
         {
             ui->fpvStatusLabel->setText("Data reception at "
@@ -504,22 +504,22 @@ void MainWindow::computeAndSendCommands()
 
         // Emergency stop ("safe" state). The propellers should not move, until the
         // regulators are explicitely restarted.
-        if(buttons[B_BUTTON])
+        if(buttons[BUTTON_2])
             emergencyStop();
 
         // Set the mean thrust to zero. The regulators are still active, so the
         // propeller may continue rotating !
-        if(buttons[X_BUTTON] || buttons[LEFT_TRIGGER] || buttons[RIGHT_TRIGGER])
+        if(buttons[BUTTON_4])
             currentThrust = 0;
 
         // Enable/Disable the "altitude lock" mode.
-        if(buttons[Y_BUTTON])
+        if(buttons[LEFT_TRIGGER_U])
             ui->altitudeLockCheckbox->setChecked(true);
 
-        if(buttons[A_BUTTON])
+        if(buttons[LEFT_TRIGGER_D])
             ui->altitudeLockCheckbox->setChecked(false);
 
-        if(buttons[RIGHT_STICK_BUTTON])
+        if(buttons[RIGHT_TRIGGER_U])
             takePicture();
     }
 
