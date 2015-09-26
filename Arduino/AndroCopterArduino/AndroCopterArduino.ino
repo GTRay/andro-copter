@@ -13,14 +13,14 @@
 #include <AndroidAccessory.h>
 
 const int BATTERY_LEVEL_PIN = A0;
-const int NW_PWM_PIN = 3;
+const int NW_PWM_PIN = 2;
 const int NW_GND_PIN = 4;
-const int NE_PWM_PIN = 6;
+const int NE_PWM_PIN = 5;
 const int NE_GND_PIN = 7;
 const int SE_PWM_PIN = 8;
-const int SE_GND_PIN = 9;
+const int SE_GND_PIN = 10;
 const int SW_PWM_PIN = 11;
-const int SW_GND_PIN = 12;
+const int SW_GND_PIN = 13;
 
 const int PULSE_MIN = 1000; // Min time of a pulse sent to an ESC [us].
 const int PULSE_MAX = 2000; // Max time of a pulse sent to an ESC [us].
