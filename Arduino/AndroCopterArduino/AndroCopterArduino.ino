@@ -90,7 +90,7 @@ void loop()
     {
       // Update the motor signals.
       // The received powers for the motors (data[]) are between 0 and 255, so
-	  // a transformation to the ESC range (1000-2000 us) is performed.
+	   // a transformation to the ESC range (1000-2000 us) is performed.
       nwPower = map(rxBuffer[0], 0, 255, PULSE_MIN, PULSE_MAX);
       nePower = map(rxBuffer[1], 0, 255, PULSE_MIN, PULSE_MAX);
       sePower = map(rxBuffer[2], 0, 255, PULSE_MIN, PULSE_MAX);
@@ -105,6 +105,8 @@ void loop()
     nePower = PULSE_MIN;
     sePower = PULSE_MIN;
     swPower = PULSE_MIN;
+
+    //// automatic landing
   }
   
   // If the phone does not send updates for some time, this mean
@@ -116,6 +118,8 @@ void loop()
     nePower = PULSE_MIN;
     sePower = PULSE_MIN;
     swPower = PULSE_MIN;
+
+    //// automatic landing
   }
   
   // Send a pulse to each ESC.
