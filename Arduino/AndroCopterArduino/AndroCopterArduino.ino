@@ -23,7 +23,7 @@ const int SW_PWM_PIN = 11;
 const int SW_GND_PIN = 12;
 
 const int PULSE_MIN = 1000; // Min time of a pulse sent to an ESC [us].
-const int PULSE_MAX = 2000; // Max time of a pulse sent to an ESC[us].
+const int PULSE_MAX = 2000; // Max time of a pulse sent to an ESC [us].
 const unsigned long MAX_TIME_WITHOUT_RECEPTION = 500; // If no data is received during this time, stop all motors [ms].
 const unsigned long PULSES_PERIOD = 2222; // Period of the main loop (450 Hz) [us].
 const unsigned int BATT_VOLT_TX_PERIOD = 500; // Sending period of the battery voltage [ms].
@@ -67,10 +67,14 @@ void setup()
   swMotor.attach(SW_PWM_PIN);
   
   // Set the GND pins for each ESC.
-  pinMode(NW_GND_PIN, OUTPUT); digitalWrite(NW_GND_PIN, LOW);
-  pinMode(NE_GND_PIN, OUTPUT); digitalWrite(NE_GND_PIN, LOW);
-  pinMode(SE_GND_PIN, OUTPUT); digitalWrite(SE_GND_PIN, LOW);
-  pinMode(SW_GND_PIN, OUTPUT); digitalWrite(SW_GND_PIN, LOW);
+  pinMode(NW_GND_PIN, OUTPUT); 
+  digitalWrite(NW_GND_PIN, LOW);
+  pinMode(NE_GND_PIN, OUTPUT); 
+  digitalWrite(NE_GND_PIN, LOW);
+  pinMode(SE_GND_PIN, OUTPUT); 
+  digitalWrite(SE_GND_PIN, LOW);
+  pinMode(SW_GND_PIN, OUTPUT); 
+  digitalWrite(SW_GND_PIN, LOW);
 }
 
 void loop()
