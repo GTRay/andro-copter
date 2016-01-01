@@ -475,9 +475,9 @@ void MainWindow::computeAndSendCommands()
         gamepadWasConnected = true;
 
         // Update the thrust.
-        if(fabs(axes[THRUST_AXIS]) > DEAD_ZONE_GAMEPAD)
+        if(fabs(axes[AXIS_THRUST]) > DEAD_ZONE_GAMEPAD)
         {
-            currentThrust -= (int)(axes[THRUST_AXIS] / GP_AXIS_AMPLITUDE * THRUST_VARSPEED);
+            currentThrust -= (int)(axes[AXIS_THRUST] / GP_AXIS_AMPLITUDE * THRUST_VARSPEED);
 
             if(currentThrust < 0) // The thrust has saturation.
                 currentThrust = 0;
@@ -486,9 +486,9 @@ void MainWindow::computeAndSendCommands()
         }
 
         // Update the yaw angle.
-        if((!ui->lockYawTargetCheckBox->isChecked()) && abs(axes[YAW_AXIS]) > DEAD_ZONE_GAMEPAD)
+        if((!ui->lockYawTargetCheckBox->isChecked()) && abs(axes[AXIS_YAW]) > DEAD_ZONE_GAMEPAD)
         {
-            currentYaw += axes[YAW_AXIS] / GP_AXIS_AMPLITUDE * YAW_VARSPEED;
+            currentYaw += axes[AXIS_YAW] / GP_AXIS_AMPLITUDE * YAW_VARSPEED;
 
             if(currentYaw >= 180) // The yaw angle is circular.
                 currentYaw -= 360;
@@ -497,29 +497,29 @@ void MainWindow::computeAndSendCommands()
         }
 
         // Set the other angles.
-        pitchAngle = axes[PITCH_AXIS] / GP_AXIS_AMPLITUDE * PITCH_AMPLITUDE;
-        rollAngle = axes[ROLL_AXIS] / GP_AXIS_AMPLITUDE * ROLL_AMPLITUDE;
+        pitchAngle = axes[AXIS_PITCH] / GP_AXIS_AMPLITUDE * PITCH_AMPLITUDE;
+        rollAngle = axes[AXIS_ROLL] / GP_AXIS_AMPLITUDE * ROLL_AMPLITUDE;
 
         QVector<bool> buttons = gamepad.getButtons();
 
         // Emergency stop ("safe" state). The propellers should not move, until the
         // regulators are explicitely restarted.
-        if(buttons[BUTTON_2])
+        if(buttons[BUTTON_A])
             emergencyStop();
 
         // Set the mean thrust to zero. The regulators are still active, so the
         // propeller may continue rotating !
-        if(buttons[BUTTON_4])
+        if(buttons[BUTTON_B])
             currentThrust = 0;
 
         // Enable/Disable the "altitude lock" mode.
-        if(buttons[LEFT_TRIGGER_U])
+        if(buttons[BUTTON_X])
             ui->altitudeLockCheckbox->setChecked(true);
 
-        if(buttons[LEFT_TRIGGER_D])
+        if(buttons[BUTTON_Y])
             ui->altitudeLockCheckbox->setChecked(false);
 
-        if(buttons[RIGHT_TRIGGER_U])
+        if(buttons[BUTTON_RB])
             takePicture();
     }
 
